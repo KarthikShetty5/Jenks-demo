@@ -28,7 +28,7 @@ pipeline{
 stage("deploy"){
   when{
     expression {
-      BUILD_NUMBER == 1.0
+      BUILD_NUMBER == '1.0'
     }
   }
   steps{
