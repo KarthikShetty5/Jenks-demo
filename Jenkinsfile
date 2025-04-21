@@ -25,17 +25,12 @@ pipeline{
         }
       }
     }
-    stage("test"){
-      when{
-        expression{
-          params.TEST
-        }
-      }
-      steps{
-        echo "testing"
-      }
+stage("deploy"){
+  when{
+    expression {
+      BUILD_NUMBER == 1.0
     }
-    stage("deploy"){
+  }
   steps{
     script{
       gv.deployApp()
