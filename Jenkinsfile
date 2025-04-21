@@ -22,7 +22,10 @@ pipeline{
     stage("deploy"){
       steps{
         echo "deploying"
-        echo "deploying with${SERVER_PASSWORD}"
+        withCredentials([usernamePassword(credentials:'server-cred', usernameVariable:USER, passwoRdVariable:PASS)]){
+          echo "deploying with ${USER}"
+          echo "deploying with ${PASS}"
+        }
       }
     }
   }
