@@ -20,13 +20,13 @@ pipeline{
       }
     }
     stage("deploy"){
-      steps{
-        echo "deploying"
-        withCredentials([usernamePassword(credentials:'server-cred', usernameVariable:USER, passwordVariable:PASS)]){
-          echo "deploying with ${USER}"
-          echo "deploying with ${PASS}"
-        }
+  steps{
+    echo "deploying"
+      withCredentials([usernamePassword(credentialsId: 'server-cred', usernameVariable: 'USER', passwordVariable: 'PASS')]){
+        echo "deploying with ${USER}"
+        echo "deploying with ${PASS}"
       }
     }
+  }
   }
 }
