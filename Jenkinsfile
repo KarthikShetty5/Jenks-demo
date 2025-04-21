@@ -22,8 +22,7 @@ pipeline{
     stage("deploy"){
       steps{
         echo "deploying"
-        echo "${SERVER_PASSWORD}"
-        sh "echo ${SERVER_PASSWORD}"
+        echo "deploying with${SERVER_PASSWORD}"
       }
     }
   }
