@@ -1,3 +1,5 @@
+def gv
+
 pipeline{
   agent any
   environment {
@@ -8,9 +10,19 @@ pipeline{
     choice(name:"Version", choices: ['1.0', '2.0', '3.0'], description: 'Select version')
   }
   stages{
+    stage("init"){
+      steps{
+        script{
+          gv = load 'script.groovy'
+        }
+      }
+    }
     stage("build"){
       steps{
-        echo "building"
+        script{
+          echo "building ${params.Version}"
+          gv.buildApp()
+        }
       }
     }
     stage("test"){
@@ -25,12 +37,14 @@ pipeline{
     }
     stage("deploy"){
   steps{
-    echo "deploying"
+    script{
+      gv.deployApp()
+    }
       // withCredentials([usernamePassword(credentialsId: 'server-cred', usernameVariable: 'USER', passwordVariable: 'PASS')]){
       //   echo "deploying with ${USER}"
       //   echo "deploying with ${PASS}"
       // }
-      echo "${params.Version}"
+      // echo "${params.Version}"
     }
   }
   }
