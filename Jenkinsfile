@@ -1,5 +1,8 @@
 pipeline{
   agent any
+  environment {
+    SERVER_PASSWORD = credentials("server-cred")
+  }
   stages{
     stage("build"){
       steps{
@@ -19,6 +22,8 @@ pipeline{
     stage("deploy"){
       steps{
         echo "deploying"
+        echo "${SERVER_PASSWORD}"
+        sh "echo ${SERVER_PASSWORD}"
       }
     }
   }
