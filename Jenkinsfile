@@ -54,7 +54,7 @@ pipeline{
   stages{
     stage("build"){
       steps{
-        echo "done"
+        echo "done build"
       }
     }
     stage("test"){
