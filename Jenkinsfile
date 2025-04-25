@@ -54,7 +54,7 @@ pipeline{
   stages{
     stage("build"){
       steps{
-        sh'''
+        bat '''
           cd myapp
           pip install -r requirements.txt
         '''
@@ -62,7 +62,7 @@ pipeline{
     }
     stage("test"){
       steps{
-        sh'''
+        bat '''
           cd myapp
           python main.py
         '''
